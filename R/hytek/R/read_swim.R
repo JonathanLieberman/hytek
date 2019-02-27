@@ -1,15 +1,9 @@
 read_swim <- function(swimLines) {
-    # Extract Metadata CHANGE THIS LATER
-    textData <- str_remove_all(swimLines[1], '[0-9:.@#-]')
-    textData <- gsub("^\\s+|\\s+$", "", textData)
-    textData <- str_split(textData, "  +")[[1]]
-    #textData <- unlist(str_extract_all(swimLines[1], '[a-zA-Z]+'))
-    
-    #swimmerName <- paste(textData[1:2], collapse = ", ")
-    swimmerName <- textData[1]
-    textDataSchool <- str_split(textData[2], " ")[[1]]
-    year <- textDataSchool[1]
-    school <- textDataSchool[2]
+    # Extract metadata
+    textData <- swimLines[1]
+    swimmerName <- trimws(substr(textData, 4, 27))
+    year <- trimws(substr(textData, 28, 29))
+    school <- trimws(substr(textData, 31, 43))
     
     # Extract reaction time
     reactionTime <- 
